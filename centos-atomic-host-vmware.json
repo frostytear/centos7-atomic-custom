@@ -1,0 +1,5 @@
+{
+ "include": "centos-atomic-host.json",
+ "packages": ["open-vm-tools"],
+ "units": ["vmtoolsd"]
+}
