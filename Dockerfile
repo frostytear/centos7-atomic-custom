@@ -10,11 +10,13 @@ dnf clean all
 RUN mkdir -p /home/working; \
 cd /home/working; \
 git clone https://github.com/CentOS/sig-atomic-buildscripts; \
-
 # create and initialize repo directory
 mkdir -p /srv/rpm-ostree/repo && \
 cd /srv/rpm-ostree/ && \
 ostree --repo=repo init --mode=archive-z2
+
+# copy custom IMS tree file
+COPY centos-atomic-host-vmware.json /home/working/sig-atomic-buildscripts
 
 # expose default SimpleHTTPServer port, set working dir
 EXPOSE 8000
