@@ -7,9 +7,13 @@ RUN dnf install -y rpm-ostree git python; \
 dnf clean all
 
 # create working dir and clone centos atomic definitions
+# checkout downstream branch per this link:
+# http://ask.projectatomic.io/en/question/3868/rpm-ostree-compose-gives-error-no-package-matches-atomic/
 RUN mkdir -p /home/working; \
 cd /home/working; \
 git clone https://github.com/CentOS/sig-atomic-buildscripts; \
+cd /home/working/sig-atomic-buildscripts && \
+git checkout downstream
 # create and initialize repo directory
 mkdir -p /srv/rpm-ostree/repo && \
 cd /srv/rpm-ostree/ && \
