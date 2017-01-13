@@ -1,10 +1,13 @@
 # Builds a docker image for rpm-ostree building and hosting 
 # so we can build and host our own CentOS Atomic images
-FROM fedora:25
+FROM centos:7
+
+# yum repo with atomic build packages for centos
+COPY atomic7-testing.repo /etc/yum.repos.d/
 
 # install needed packages
-RUN dnf install -y rpm-ostree git python; \
-dnf clean all
+RUN yum install -y rpm-ostree git python; \
+yum clean all
 
 # create working dir and clone centos atomic definitions
 # checkout downstream branch per this link
@@ -18,7 +21,7 @@ git checkout downstream; \
 mkdir -p /srv/rpm-ostree/repo && \
 cd /srv/rpm-ostree/ && \
 ostree --repo=repo init --mode=archive-z2
-#
+
 # copy custom build configs 
 COPY centos-atomic-host-vmware.json /home/working/sig-atomic-buildscripts
 COPY config.ini /home/working/sig-atomic-buildscripts
