@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This README provides steps on building a custom CentOS 7 Atomic Host. 
+This README provides steps on building a custom CentOS 7 [Atomic Host](http://www.projectatomic.io/). 
 
 The example config in this repo will create a CentOS 7 Atomic Host with `open-vm-tools` installed for Atomic Host deployment on VMware (and to be able to easily launch new VMs with a tool like [ezmomi](https://github.com/imsweb/ezmomi)). That said, you can easily customize the packages you want installed (See **Customizing** below).
 
