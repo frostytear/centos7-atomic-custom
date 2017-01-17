@@ -53,4 +53,14 @@ systemctl reboot
 
 ## Customizing
 
-Packages you want installed in the Atomic image can be changed in `centos-atomic-host-custom.json`.
+Packages you want installed in the Atomic image can be changed in `centos-atomic-host-custom.json`:
+
+```
+{
+ "include": "centos-atomic-host.json",
+ "packages": ["open-vm-tools"],
+ "units": ["vmtoolsd"]
+}
+```
+
+Here we are including the default `.json` file that builds a vanilla CentOS Atomic Host. The `units` entry specifies what service should be enabled on boot.
