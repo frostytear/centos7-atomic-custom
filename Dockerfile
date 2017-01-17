@@ -20,7 +20,7 @@ cd /srv/rpm-ostree/ && \
 ostree --repo=repo init --mode=archive-z2
 #
 # copy custom build configs 
-COPY centos-atomic-host-vmware.json /home/working/sig-atomic-buildscripts
+COPY centos-atomic-host-custom.json /home/working/sig-atomic-buildscripts
 COPY config.ini /home/working/sig-atomic-buildscripts
 
 # expose default SimpleHTTPServer port, set working dir
