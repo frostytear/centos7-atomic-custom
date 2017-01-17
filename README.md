@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This README provides steps on building a custom CentOS 7 Atomic Host. The default config files in this repo will create a CentOS 7 Atomic Host but with `open-vm-tools` installed for Atomic Host deployment on VMware (and to be able to easily launch new VMs with a tool like [ezmomi](https://github.com/imsweb/ezmomi)). That said, you can easily customize the `centos-atomic-host-vmware.json` file to install your own packages as desired.
+This README provides steps on building a custom CentOS 7 Atomic Host. The default config files in this repo will create a CentOS 7 Atomic Host but with `open-vm-tools` installed for Atomic Host deployment on VMware (and to be able to easily launch new VMs with a tool like [ezmomi](https://github.com/imsweb/ezmomi)). That said, you can easily customize the packages you want installed (See **Customizing** below).
 
 ## Step 1: Build 
 
@@ -13,11 +13,12 @@ git clone https://github.com/imsweb/centos7-atomic-custom.git
 cd centos7-atomic-custom
 docker build --rm -t $USER/atomicrepo .
 docker run --privileged -d -p 8000:8000 --name atomicrepo $USER/atomicrepo
+
 # Enter the docker container and build the custom Atomic image:
 docker exec -it atomicrepo bash
 cd sig-atomic-buildscripts
 curl http://mirror.centos.org/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7 -o /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-rpm-ostree compose tree --repo=/srv/rpm-ostree/repo ./centos-atomic-host-vmware.json
+rpm-ostree compose tree --repo=/srv/rpm-ostree/repo ./centos-atomic-host-custom.json
 ```
 
 The `rpm-ostree compose tree` step takes awhile. Once completed, your custom images will be served in a `rpm-ostree` repository at http://mydockerhost.example.com:8000. Your Atomic Hosts can then retrieve images from that URL, per the next step.
@@ -48,3 +49,6 @@ atomic host upgrade
 systemctl reboot
 ```
 
+## Customizing
+
+Packages you want installed in the Atomic image can be changed in `centos-atomic-host-custom.json`.
