@@ -30,10 +30,10 @@ The `rpm-ostree compose tree` step takes awhile. Once completed, your custom ima
 On an existing CentOS 7 Atomic Host, add your repo and pull down the latest image you've built, and reboot the Atomic host:
 
 ```
-ostree remote add imsrepo http://mydockerhost.example.com:8000 --no-gpg-verify
+ostree remote add myrepo http://mydockerhost.example.com:8000 --no-gpg-verify
 
 # pull down image and rebase
-rpm-ostree rebase imsrepo:centos-atomic-host/7/x86_64/standard
+rpm-ostree rebase myrepo:centos-atomic-host/7/x86_64/standard
 
 # boot into our new image
 systemctl reboot
