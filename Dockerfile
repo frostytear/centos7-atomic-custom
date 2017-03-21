@@ -3,7 +3,7 @@
 FROM fedora:25
 
 # install needed packages
-RUN dnf install -y rpm-ostree git python; \
+RUN dnf install -y ostree rpm-ostree git python; \
 dnf clean all
 
 # create working dir and clone centos atomic definitions
